@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     Hello kaflan
-    <button  v-on:click="getPokemon()"> Click servive </button>
+      <router-view></router-view>
+    <button  v-on:click="redirect()"> Click servive </button>
     <ul v-for="pokemon in pokemons">
     <li>{{ pokemon.name }}</li>
   </ul>
@@ -24,6 +25,9 @@ export default {
     console.log('reaby')
   },
   methods: {
+    redirect: function () {
+      this.$router.push('/success')
+    },
     getPokemon: function () {
       this.$service.getPokemons().then((res) => {
         this.meta = res.data.meta
