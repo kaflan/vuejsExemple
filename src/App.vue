@@ -1,7 +1,15 @@
 <template>
   <div id="app">
     Hello kaflan
+      <div> 
+         <p>{{ count }}</p>
+  <p>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </p>
+      </div>
       <router-view></router-view>
+      
     <button  v-on:click="redirect()"> Click servive </button>
     <ul v-for="pokemon in pokemons">
     <li>{{ pokemon.name }}</li>
@@ -10,6 +18,7 @@
 </template>
 
 <script>
+import store from './store.js'
 export default {
   name: 'app',
   data: function () {
@@ -24,16 +33,27 @@ export default {
     this.getPokemon()
     console.log('reaby')
   },
+  computed: {
+    count () {
+      return store.state.count
+    }
+  },
   methods: {
-    redirect: function () {
+    redirect () {
       this.$router.push('/success')
     },
-    getPokemon: function () {
+    getPokemon () {
       this.$service.getPokemons().then((res) => {
         this.meta = res.data.meta
         this.pokemons = res.data.objects
         return res.data
       })
+    },
+    increment () {
+      store.commit('increment')
+    },
+    decrement () {
+      store.commit('decrement')
     }
   }
 }
