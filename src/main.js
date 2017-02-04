@@ -5,19 +5,18 @@ import App from './App'
 import VueMaterial from 'vue-material'
 import VueRouter from 'vue-router'
 import 'vue-material/dist/vue-material.css'
-import service from './services'
 import router from './route'
-// import store from './store'
+import store from './store'
 /*
  Use all custom service
 */
 Vue.use(VueRouter)
-Vue.use(service)
 Vue.use(VueMaterial)
+ /* eslint-disable no-new */
 new Vue({
-  router: router,
-  // store,
+  router,
+  store,
   el: '#app',
   template: '<App/>',
   components: { App }
-}).$mount('#app')
+})

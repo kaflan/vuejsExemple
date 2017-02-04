@@ -1,60 +1,28 @@
 <template>
   <div id="app">
-    Hello kaflan
-      <div> 
-         <p>{{ count }}</p>
-  <p>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-  </p>
-      </div>
+    <h1>Hello vue</h1>
       <router-view></router-view>
-      
-    <button  v-on:click="redirect()"> Click servive </button>
-    <ul v-for="pokemon in pokemons">
+    <!--<button  v-on:click="redirect()"> Click servive </button>-->
+    <!--<ul v-for="pokemon in pokemons">
     <li>{{ pokemon.name }}</li>
-  </ul>
+  </ul>-->
   </div>
 </template>
 
 <script>
-import store from './store.js'
 export default {
   name: 'app',
-  data: function () {
-    return {
-      meta: {},
-      pokemons: []
-    }
-  },
+  // data: function () {
+  //   return {
+  //     meta: {},
+  //     pokemons: []
+  //   }
+  // },
   components: {
   },
-  mounted: function () {
-    this.getPokemon()
-    console.log('reaby')
-  },
   computed: {
-    count () {
-      return store.state.count
-    }
   },
   methods: {
-    redirect () {
-      this.$router.push('/success')
-    },
-    getPokemon () {
-      this.$service.getPokemons().then((res) => {
-        this.meta = res.data.meta
-        this.pokemons = res.data.objects
-        return res.data
-      })
-    },
-    increment () {
-      store.commit('increment')
-    },
-    decrement () {
-      store.commit('decrement')
-    }
   }
 }
 
